@@ -17,7 +17,7 @@ const deleteAddress = async (id) => {
             console.log(`deleteAddress failed to retrieve data`);
             return {error:'error loading data', data: null};
         }else{
-            const dataUpdated = data.filter((rec: any) => rec.id !== parseInt(id, 10));
+            const dataUpdated = data.filter((rec: any) => rec.id !== id);
             fs.writeFileSync(dataPath, JSON.stringify(dataUpdated, null, 2));
             return {err: null, data: dataUpdated};
         }

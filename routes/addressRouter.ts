@@ -19,7 +19,9 @@ const routes = () => {
             return res.json(response.data);
         })
         .get(async (req, res) => {
-            const response = await getAddresses();
+            console.log(req.query);
+            const q = (req.query.s && req.query.p) ? req.query: null;
+            const response = await getAddresses(null, q);
             if(response.err) return res.send(response.err);
             return res.json(response.data);
         });
@@ -35,7 +37,7 @@ const routes = () => {
             return res.json(response.data);
         })
         .get(async (req, res) => {
-            const response = await getAddresses(req.params.id);
+            const response = await getAddresses(req.params.id, req.query);
             if(response.err) return res.send(response.err);
             return res.json(response.data);
         });
